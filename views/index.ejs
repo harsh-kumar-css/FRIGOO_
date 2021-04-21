@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <title>Frigoo</title>
+    <script defer src="/socket.io/socket.io.js"></script>
+    <script defer src="/script.js"></script>
+    <script src="./libraries/p5.js"></script>
+    <script src="./libraries/matter.js"></script>
+    <!-- <script src="../addons/p5.sound.js"></script> -->
+    <script src="sketch.js"></script>
+    <script src="box.js"></script>
+    <script src="boundary.js"></script>
+  </head>
+  <style>
+    body {
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: 100%;
+      font-family: "Montserrat", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    .main-page {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+      justify-content: space-between;
+    }
+
+    .main-page .intro {
+      margin: 10px;
+      width: 100%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .main-page .intro .heading {
+      border: 3px solid rgba(240, 230, 230, 0.733);
+      border-radius: 5px;
+      height: 20%;
+      margin: 10px;
+      width: 80%;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      -webkit-box-shadow: 10px 10px 10px #e2dddd;
+      box-shadow: 10px 10px 10px #e2dddd;
+    }
+
+    .main-page .intro .heading h1 {
+      font-size: 3em;
+      background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#f32172c7),
+        color-stop(#ff6b08c2),
+        to(#cf23cfbd)
+      );
+      background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      font-weight: 600;
+    }
+
+    .main-page .intro .rooms {
+      border: 3px solid rgba(240, 230, 230, 0.733);
+      border-radius: 5px;
+      height: 70%;
+      margin: 10px;
+      width: 80%;
+      -webkit-box-shadow: 10px 10px 10px #e2dddd;
+      box-shadow: 10px 10px 10px #e2dddd;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .main-page .intro .rooms .head {
+      width: 80%;
+      height: 10%;
+      margin: 5px;
+      padding: 10px 0;
+      background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#f32172c7),
+        color-stop(#ff6b08c2),
+        to(#cf23cfbd)
+      );
+      background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      font-weight: 400;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .main-page .intro .rooms .room-container {
+      width: 80%;
+      height: 60%;
+      margin: 5px;
+      border: 3px solid #f0e6e6;
+      border-radius: 5px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: flex-start;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      overflow-y: scroll;
+    }
+
+    .main-page .intro .rooms .room-container .room-name {
+      border: 2px solid #f0e6e6;
+      width: 80%;
+      margin: 10px;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -ms-flex-pack: distribute;
+      justify-content: space-around;
+      padding: 5px 0;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+      border-radius: 5px;
+    }
+
+    .main-page .intro .rooms .room-container .room-name:hover {
+      background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#f3217283),
+        color-stop(#ff6b0875),
+        to(#cf23cf77)
+      );
+      background: linear-gradient(to right, #f3217283, #ff6b0875, #cf23cf77);
+    }
+
+    .main-page .intro .rooms .room-container .room-name:hover .name,
+    .main-page .intro .rooms .room-container .room-name:hover .join {
+      background: white;
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      font-weight: 600;
+    }
+
+    .main-page .intro .rooms .room-container .room-name .name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#f32172c7),
+        color-stop(#ff6b08c2),
+        to(#cf23cfbd)
+      );
+      background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      font-weight: 600;
+      margin: 0 10px;
+    }
+
+    .main-page .intro .rooms .room-container .room-name .join {
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 600;
+      color: mediumorchid;
+    }
+
+    .main-page .intro .rooms .form {
+      overflow: hidden;
+      width: 80%;
+      height: 20%;
+      padding: 10px 0;
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+    }
+
+    .main-page .intro .rooms .form input {
+      border: 2px solid #f0e6e6;
+      border-radius: 5px;
+      height: 20px;
+      padding: 5px;
+      width: 17em;
+      outline: none;
+      -webkit-box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
+      box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
+      font-family: "Montserrat", sans-serif;
+      font-weight: 400;
+    }
+
+    .main-page .intro .rooms .form button {
+      border: 2px solid #f0e6e6;
+      border-radius: 5px;
+      font-family: "Montserrat", sans-serif;
+      padding: 8px 3.5px;
+      background: -webkit-gradient(
+        linear,
+        left top,
+        right top,
+        from(#f32172c7),
+        color-stop(#ff6b08c2),
+        to(#cf23cfbd)
+      );
+      background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
+      -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      font-weight: 600;
+      -webkit-box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
+      box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
+    }
+
+    .main-page .intro .rooms .form button:hover {
+      -webkit-transform: translateY(-3px);
+      transform: translateY(-3px);
+      -webkit-transition-duration: 0.2s;
+      transition-duration: 0.2s;
+      -webkit-box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.712);
+      box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.712);
+    }
+
+    .main-page .intro .rooms .form button:active {
+      -webkit-transform: translateY(2px);
+      transform: translateY(2px);
+      -webkit-transition-duration: 0.2s;
+      transition-duration: 0.2s;
+    }
+
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    /* Track */
+    ::-webkit-scrollbar-track {
+      background: #f0e6e6;
+    }
+
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+      background: #f0e6e6;
+    }
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+      background: #c2bebe;
+    }
+    /*# sourceMappingURL=style.css.map */
+  </style>
+  <body>
+    <script>
+      AOS.init();
+    </script>
+    <div class="main-page">
+      <div class="intro">
+        <div class="heading" data-aos="fade-right" data-aos-duration="1000">
+          <div class="FRigoo"><h1>Frigoo</h1></div>
+        </div>
+        <div class="rooms" data-aos="fade-up" data-aos-duration="2000">
+          <div class="head">
+            <div class="room-head"><h1>rooms</h1></div>
+          </div>
+          <div class="room-container" id="room-container">
+            <% Object.keys(rooms).forEach(room => { %>
+            <div class="room-name">
+              <div class="name"><%= room %></div>
+              <div><a href="/<%= room %>" class="join">Join</a></div>
+            </div>
+            <% }) %>
+          </div>
+
+          <div class="form">
+            <form action="/room" method="POST">
+              <input
+                name="room"
+                type="text"
+                required
+                placeholder="Enter room name.."
+              />
+              <button type="submit">make room</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <main></main>
+    </div>
+  </body>
+</html>

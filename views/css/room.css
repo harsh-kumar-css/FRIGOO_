@@ -1,0 +1,286 @@
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: "Montserrat", sans-serif;
+  scroll-behavior: smooth;
+}
+
+main {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .content {
+  width: 60%;
+  height: 80%;
+  border-radius: 5px;
+  border: 3px solid #f0e6e6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 10px 10px 10px #e2dddd;
+          box-shadow: 10px 10px 10px #e2dddd;
+}
+
+main .content .users {
+  width: 30%;
+  height: 90%;
+  border-radius: 5px;
+  border: 2px solid #f0e6e6;
+  margin: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow-y: scroll;
+}
+
+main .content .users .connected {
+  width: 80%;
+  border: 3px solid rgba(114, 240, 30, 0.575);
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #aca7a7;
+  word-wrap: break-word;
+}
+
+main .content .users .disconnected {
+  width: 80%;
+  border: 3px solid #f34b3f83;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #aca7a7;
+  word-wrap: break-word;
+}
+
+main .content .conversation {
+  margin: 5px;
+  width: 60%;
+  height: 90%;
+  border-radius: 5px;
+  border: 3px solid #f0e6e6;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .content .conversation .messages {
+  margin: 5px;
+  width: 90%;
+  height: 80%;
+  border-radius: 5px;
+  border: 2px solid #f0e6e6;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .content .conversation .messages .other {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+main .content .conversation .messages .other .msg_details {
+  padding: 5px;
+  border-radius: 5px;
+  width: 40%;
+  height: auto;
+  word-wrap: break-word;
+  border: 3px solid #f0e6e6;
+  font-weight: 600;
+  color: #aca7a7;
+}
+
+main .content .conversation .messages .other .msg_details .sent_by {
+  color: #ff6b08c2;
+  padding: 0 0 2px 0;
+  margin: 0 0 2px 0;
+  font-size: 0.7em;
+}
+
+main .content .conversation .messages .other .msg_details .sent_by .tab {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+main .content .conversation .messages .my {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 90%;
+  height: auto;
+  border-radius: 5px;
+  margin: 5px;
+}
+
+main .content .conversation .messages .my .msg_details {
+  padding: 5px;
+  width: 40%;
+  word-wrap: break-word;
+  height: auto;
+  border-radius: 5px;
+  border: 3px solid #f0e6e6;
+  background: -webkit-gradient(linear, left top, right top, from(#f32172c7), color-stop(#ff6b08c2), to(#cf23cfbd));
+  background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: 600;
+}
+
+main .content .conversation .messages .my .msg_details .sent_by {
+  padding: 0 0 2px 0;
+  margin: 0 0 2px 0;
+  font-size: 0.7em;
+}
+
+main .content .conversation .messages .my .msg_details .sent_by .tab {
+  display: inline-block;
+  margin-left: 15px;
+}
+
+main .content .conversation .msg {
+  margin: 5px;
+  width: 90%;
+  height: 10%;
+  border-radius: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+main .content .conversation .msg input {
+  border: 2px solid #dfdede;
+  border-radius: 5px;
+  height: 20px;
+  width: 20em;
+  outline: none;
+  -webkit-box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
+          box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  padding: 6px;
+}
+
+main .content .conversation .msg button {
+  border: 2px solid #dfdede;
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  padding: 8px 15px;
+  background: -webkit-gradient(linear, left top, right top, from(#f32172c7), color-stop(#ff6b08c2), to(#cf23cfbd));
+  background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  font-weight: 600;
+  -webkit-box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
+          box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
+}
+
+main .content .conversation .msg button:hover {
+  -webkit-transform: translateY(-3px);
+          transform: translateY(-3px);
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  -webkit-box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.712);
+          box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.712);
+}
+
+main .content .conversation .msg button:active {
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+  -webkit-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f0e6e6;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #f0e6e6;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #c2bebe;
+}
+/*# sourceMappingURL=room.css.map */

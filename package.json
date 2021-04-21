@@ -1,0 +1,16 @@
+{
+  "name": "frigoo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "boundary.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "harsh",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "socket.io": "^4.0.1"
+  }
+}
