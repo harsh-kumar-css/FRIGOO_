@@ -15,6 +15,7 @@ const my_message = function (message) {
   <div class="sent_msg">${message}</div>
 </div>`;
   messageContainer.append(messageElement);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
 };
 
 const others_message = function (name, message) {
@@ -27,6 +28,7 @@ const others_message = function (name, message) {
     <div class="sent_msg">${message}</div>
   </div>`;
   messageContainer.append(messageElement);
+  messageContainer.scrollTop = messageContainer.scrollHeight;
 };
 
 const user_connected = function (message) {
@@ -34,12 +36,14 @@ const user_connected = function (message) {
   userElement.classList.add("connected");
   userElement.innerHTML = message;
   user_status.append(userElement);
+  user_status.scrollTop = user_status.scrollHeight;
 };
 const user_disconnected = function (message) {
   const userElement = document.createElement("div");
   userElement.classList.add("disconnected");
   userElement.innerHTML = message;
   user_status.append(userElement);
+  user_status.scrollTop = user_status.scrollHeight;
 };
 
 if (messageForm != null) {

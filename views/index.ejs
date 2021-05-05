@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="img/png" href="logo-foursquare.svg" />
     <link rel="stylesheet" href="style.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link
@@ -14,24 +15,44 @@
     <title>Frigoo</title>
     <script defer src="/socket.io/socket.io.js"></script>
     <script defer src="/script.js"></script>
-    <script src="./libraries/p5.js"></script>
-    <script src="./libraries/matter.js"></script>
-    <!-- <script src="../addons/p5.sound.js"></script> -->
-    <script src="sketch.js"></script>
-    <script src="box.js"></script>
-    <script src="boundary.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Frigoo</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <style>
+    @import url(https://fonts.googleapis.com/css?family=Open+Sans:300);
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       padding: 0;
       margin: 0;
       width: 100%;
-      height: 100%;
+      height: 100vh;
       font-family: "Montserrat", sans-serif;
-      scroll-behavior: smooth;
+      background-image: url(https://wallpaperaccess.com/full/2224368.png);
+      background-size: cover;
+      overflow: hidden;
     }
 
     .main-page {
+      width: 100%;
+      height: 100%;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -63,7 +84,9 @@
       border-radius: 5px;
       height: 20%;
       margin: 10px;
-      width: 80%;
+      width: 60%;
+      -webkit-backdrop-filter: blur(1px);
+      backdrop-filter: blur(1px);
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -73,23 +96,13 @@
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
-      -webkit-box-shadow: 10px 10px 10px #e2dddd;
-      box-shadow: 10px 10px 10px #e2dddd;
+      -webkit-box-shadow: 10px 10px 10px rgba(226, 221, 221, 0.219);
+      box-shadow: 10px 10px 10px rgba(226, 221, 221, 0.219);
     }
 
-    .main-page .intro .heading h1 {
+    .main-page .intro .heading h2 {
       font-size: 3em;
-      background: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        from(#f32172c7),
-        color-stop(#ff6b08c2),
-        to(#cf23cfbd)
-      );
-      background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
+      color: #fff;
       font-weight: 600;
     }
 
@@ -98,9 +111,9 @@
       border-radius: 5px;
       height: 70%;
       margin: 10px;
-      width: 80%;
-      -webkit-box-shadow: 10px 10px 10px #e2dddd;
-      box-shadow: 10px 10px 10px #e2dddd;
+      width: 60%;
+      -webkit-box-shadow: 10px 10px 10px rgba(226, 221, 221, 0.219);
+      box-shadow: 10px 10px 10px rgba(226, 221, 221, 0.219);
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -114,24 +127,15 @@
       -webkit-box-align: center;
       -ms-flex-align: center;
       align-items: center;
+      -webkit-backdrop-filter: blur(1px);
+      backdrop-filter: blur(1px);
+      color: #fff;
     }
 
     .main-page .intro .rooms .head {
       width: 80%;
       height: 10%;
       margin: 5px;
-      padding: 10px 0;
-      background: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        from(#f32172c7),
-        color-stop(#ff6b08c2),
-        to(#cf23cfbd)
-      );
-      background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
       font-weight: 400;
       display: -webkit-box;
       display: -ms-flexbox;
@@ -183,22 +187,11 @@
     }
 
     .main-page .intro .rooms .room-container .room-name:hover {
-      background: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        from(#f3217283),
-        color-stop(#ff6b0875),
-        to(#cf23cf77)
-      );
-      background: linear-gradient(to right, #f3217283, #ff6b0875, #cf23cf77);
+      background-color: #777;
     }
 
     .main-page .intro .rooms .room-container .room-name:hover .name,
     .main-page .intro .rooms .room-container .room-name:hover .join {
-      background: white;
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
       font-weight: 600;
     }
 
@@ -206,17 +199,6 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      background: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        from(#f32172c7),
-        color-stop(#ff6b08c2),
-        to(#cf23cfbd)
-      );
-      background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
       font-weight: 600;
       margin: 0 10px;
     }
@@ -225,14 +207,13 @@
       text-decoration: none;
       margin: 0 10px;
       font-weight: 600;
-      color: mediumorchid;
+      color: #fff;
     }
 
     .main-page .intro .rooms .form {
       overflow: hidden;
       width: 80%;
       height: 20%;
-      padding: 10px 0;
       display: -webkit-box;
       display: -ms-flexbox;
       display: flex;
@@ -246,6 +227,7 @@
 
     .main-page .intro .rooms .form input {
       border: 2px solid #f0e6e6;
+      background-color: transparent;
       border-radius: 5px;
       height: 20px;
       padding: 5px;
@@ -254,25 +236,16 @@
       -webkit-box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
       box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
       font-family: "Montserrat", sans-serif;
-      font-weight: 400;
+      font-weight: 600;
     }
 
     .main-page .intro .rooms .form button {
       border: 2px solid #f0e6e6;
+      background-color: transparent;
+      color: #fff;
       border-radius: 5px;
       font-family: "Montserrat", sans-serif;
       padding: 8px 3.5px;
-      background: -webkit-gradient(
-        linear,
-        left top,
-        right top,
-        from(#f32172c7),
-        color-stop(#ff6b08c2),
-        to(#cf23cfbd)
-      );
-      background: linear-gradient(to right, #f32172c7, #ff6b08c2, #cf23cfbd);
-      -webkit-text-fill-color: transparent;
-      -webkit-background-clip: text;
       font-weight: 600;
       -webkit-box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
       box-shadow: 5px 5px 5px rgba(226, 221, 221, 0.349);
@@ -295,7 +268,7 @@
     }
 
     ::-webkit-scrollbar {
-      width: 10px;
+      width: 8px;
     }
 
     /* Track */
@@ -310,7 +283,466 @@
 
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
-      background: #c2bebe;
+      background: #858383;
+    }
+
+    ::-webkit-input-placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #fff;
+      opacity: 1;
+      /* Firefox */
+    }
+
+    :-ms-input-placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #fff;
+      opacity: 1;
+      /* Firefox */
+    }
+
+    ::-ms-input-placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #fff;
+      opacity: 1;
+      /* Firefox */
+    }
+
+    ::placeholder {
+      /* Chrome, Firefox, Opera, Safari 10.1+ */
+      color: #fff;
+      opacity: 1;
+      /* Firefox */
+    }
+
+    .preloader {
+      top: 0%;
+      left: 0%;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-color: #063131;
+    }
+
+    h1 {
+      position: absolute;
+      font-family: "Open Sans";
+      font-weight: 600;
+      font-size: 12px;
+      text-transform: uppercase;
+      left: 50%;
+      top: 58%;
+      margin-left: -20px;
+      color: #fff;
+      letter-spacing: 0.1cm;
+    }
+
+    .body {
+      position: absolute;
+      top: 50%;
+      margin-left: -50px;
+      left: 50%;
+      -webkit-animation: speeder 0.4s linear infinite;
+      animation: speeder 0.4s linear infinite;
+    }
+
+    .body > span {
+      height: 5px;
+      width: 35px;
+      background: #fff;
+      position: absolute;
+      top: -19px;
+      left: 60px;
+      border-radius: 2px 10px 1px 0;
+    }
+
+    .base span {
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-right: 100px solid #fff;
+      border-bottom: 6px solid transparent;
+    }
+
+    .base span:before {
+      content: "";
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      background: #fff;
+      position: absolute;
+      right: -110px;
+      top: -16px;
+    }
+
+    .base span:after {
+      content: "";
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-top: 0 solid transparent;
+      border-right: 55px solid #fff;
+      border-bottom: 16px solid transparent;
+      top: -16px;
+      right: -98px;
+    }
+
+    .face {
+      position: absolute;
+      height: 12px;
+      width: 20px;
+      background: #fff;
+      border-radius: 20px 20px 0 0;
+      -webkit-transform: rotate(-40deg);
+      transform: rotate(-40deg);
+      right: -125px;
+      top: -15px;
+    }
+
+    .face:after {
+      content: "";
+      height: 12px;
+      width: 12px;
+      background: #fff;
+      right: 4px;
+      top: 7px;
+      position: absolute;
+      -webkit-transform: rotate(40deg);
+      transform: rotate(40deg);
+      -webkit-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+      border-radius: 0 0 0 2px;
+    }
+
+    .body > span > span:nth-child(1),
+    .body > span > span:nth-child(2),
+    .body > span > span:nth-child(3),
+    .body > span > span:nth-child(4) {
+      width: 30px;
+      height: 1px;
+      background: #fff;
+      position: absolute;
+      -webkit-animation: fazer1 0.2s linear infinite;
+      animation: fazer1 0.2s linear infinite;
+    }
+
+    .body > span > span:nth-child(2) {
+      top: 3px;
+      -webkit-animation: fazer2 0.4s linear infinite;
+      animation: fazer2 0.4s linear infinite;
+    }
+
+    .body > span > span:nth-child(3) {
+      top: 1px;
+      -webkit-animation: fazer3 0.4s linear infinite;
+      animation: fazer3 0.4s linear infinite;
+      -webkit-animation-delay: -1s;
+      animation-delay: -1s;
+    }
+
+    .body > span > span:nth-child(4) {
+      top: 4px;
+      -webkit-animation: fazer4 1s linear infinite;
+      animation: fazer4 1s linear infinite;
+      -webkit-animation-delay: -1s;
+      animation-delay: -1s;
+    }
+
+    @-webkit-keyframes fazer1 {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: -80px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fazer1 {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: -80px;
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes fazer2 {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: -100px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fazer2 {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: -100px;
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes fazer3 {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: -50px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fazer3 {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: -50px;
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes fazer4 {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: -150px;
+        opacity: 0;
+      }
+    }
+
+    @keyframes fazer4 {
+      0% {
+        left: 0;
+      }
+      100% {
+        left: -150px;
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes speeder {
+      0% {
+        -webkit-transform: translate(2px, 1px) rotate(0deg);
+        transform: translate(2px, 1px) rotate(0deg);
+      }
+      10% {
+        -webkit-transform: translate(-1px, -3px) rotate(-1deg);
+        transform: translate(-1px, -3px) rotate(-1deg);
+      }
+      20% {
+        -webkit-transform: translate(-2px, 0px) rotate(1deg);
+        transform: translate(-2px, 0px) rotate(1deg);
+      }
+      30% {
+        -webkit-transform: translate(1px, 2px) rotate(0deg);
+        transform: translate(1px, 2px) rotate(0deg);
+      }
+      40% {
+        -webkit-transform: translate(1px, -1px) rotate(1deg);
+        transform: translate(1px, -1px) rotate(1deg);
+      }
+      50% {
+        -webkit-transform: translate(-1px, 3px) rotate(-1deg);
+        transform: translate(-1px, 3px) rotate(-1deg);
+      }
+      60% {
+        -webkit-transform: translate(-1px, 1px) rotate(0deg);
+        transform: translate(-1px, 1px) rotate(0deg);
+      }
+      70% {
+        -webkit-transform: translate(3px, 1px) rotate(-1deg);
+        transform: translate(3px, 1px) rotate(-1deg);
+      }
+      80% {
+        -webkit-transform: translate(-2px, -1px) rotate(1deg);
+        transform: translate(-2px, -1px) rotate(1deg);
+      }
+      90% {
+        -webkit-transform: translate(2px, 1px) rotate(0deg);
+        transform: translate(2px, 1px) rotate(0deg);
+      }
+      100% {
+        -webkit-transform: translate(1px, -2px) rotate(-1deg);
+        transform: translate(1px, -2px) rotate(-1deg);
+      }
+    }
+
+    @keyframes speeder {
+      0% {
+        -webkit-transform: translate(2px, 1px) rotate(0deg);
+        transform: translate(2px, 1px) rotate(0deg);
+      }
+      10% {
+        -webkit-transform: translate(-1px, -3px) rotate(-1deg);
+        transform: translate(-1px, -3px) rotate(-1deg);
+      }
+      20% {
+        -webkit-transform: translate(-2px, 0px) rotate(1deg);
+        transform: translate(-2px, 0px) rotate(1deg);
+      }
+      30% {
+        -webkit-transform: translate(1px, 2px) rotate(0deg);
+        transform: translate(1px, 2px) rotate(0deg);
+      }
+      40% {
+        -webkit-transform: translate(1px, -1px) rotate(1deg);
+        transform: translate(1px, -1px) rotate(1deg);
+      }
+      50% {
+        -webkit-transform: translate(-1px, 3px) rotate(-1deg);
+        transform: translate(-1px, 3px) rotate(-1deg);
+      }
+      60% {
+        -webkit-transform: translate(-1px, 1px) rotate(0deg);
+        transform: translate(-1px, 1px) rotate(0deg);
+      }
+      70% {
+        -webkit-transform: translate(3px, 1px) rotate(-1deg);
+        transform: translate(3px, 1px) rotate(-1deg);
+      }
+      80% {
+        -webkit-transform: translate(-2px, -1px) rotate(1deg);
+        transform: translate(-2px, -1px) rotate(1deg);
+      }
+      90% {
+        -webkit-transform: translate(2px, 1px) rotate(0deg);
+        transform: translate(2px, 1px) rotate(0deg);
+      }
+      100% {
+        -webkit-transform: translate(1px, -2px) rotate(-1deg);
+        transform: translate(1px, -2px) rotate(-1deg);
+      }
+    }
+
+    .longfazers {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .longfazers span {
+      position: absolute;
+      height: 2px;
+      width: 20%;
+      background: #fff;
+    }
+
+    .longfazers span:nth-child(1) {
+      top: 20%;
+      -webkit-animation: lf 0.6s linear infinite;
+      animation: lf 0.6s linear infinite;
+      -webkit-animation-delay: -5s;
+      animation-delay: -5s;
+    }
+
+    .longfazers span:nth-child(2) {
+      top: 40%;
+      -webkit-animation: lf2 0.8s linear infinite;
+      animation: lf2 0.8s linear infinite;
+      -webkit-animation-delay: -1s;
+      animation-delay: -1s;
+    }
+
+    .longfazers span:nth-child(3) {
+      top: 60%;
+      -webkit-animation: lf3 0.6s linear infinite;
+      animation: lf3 0.6s linear infinite;
+    }
+
+    .longfazers span:nth-child(4) {
+      top: 80%;
+      -webkit-animation: lf4 0.5s linear infinite;
+      animation: lf4 0.5s linear infinite;
+      -webkit-animation-delay: -3s;
+      animation-delay: -3s;
+    }
+
+    @-webkit-keyframes lf {
+      0% {
+        left: 200%;
+      }
+      100% {
+        left: -200%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes lf {
+      0% {
+        left: 200%;
+      }
+      100% {
+        left: -200%;
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes lf2 {
+      0% {
+        left: 200%;
+      }
+      100% {
+        left: -200%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes lf2 {
+      0% {
+        left: 200%;
+      }
+      100% {
+        left: -200%;
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes lf3 {
+      0% {
+        left: 200%;
+      }
+      100% {
+        left: -100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes lf3 {
+      0% {
+        left: 200%;
+      }
+      100% {
+        left: -100%;
+        opacity: 0;
+      }
+    }
+
+    @-webkit-keyframes lf4 {
+      0% {
+        left: 200%;
+      }
+      100% {
+        left: -100%;
+        opacity: 0;
+      }
+    }
+
+    @keyframes lf4 {
+      0% {
+        left: 200%;
+      }
+      100% {
+        left: -100%;
+        opacity: 0;
+      }
     }
     /*# sourceMappingURL=style.css.map */
   </style>
@@ -321,19 +753,19 @@
     <div class="main-page">
       <div class="intro">
         <div class="heading" data-aos="fade-right" data-aos-duration="1000">
-          <div class="FRigoo"><h1>Frigoo</h1></div>
+          <div class="FRigoo"><h2>Frigoo</h2></div>
         </div>
         <div class="rooms" data-aos="fade-up" data-aos-duration="2000">
           <div class="head">
-            <div class="room-head"><h1>rooms</h1></div>
+            <div class="room-head"><h2>rooms</h2></div>
           </div>
           <div class="room-container" id="room-container">
-            <% Object.keys(rooms).forEach(room => { %>
+            <!-- <% Object.keys(rooms).forEach(room => { %> -->
             <div class="room-name">
               <div class="name"><%= room %></div>
               <div><a href="/<%= room %>" class="join">Join</a></div>
             </div>
-            <% }) %>
+            <!-- <% }) %> -->
           </div>
 
           <div class="form">
@@ -342,14 +774,40 @@
                 name="room"
                 type="text"
                 required
-                placeholder="Enter room name.."
+                placeholder="Enter room name . . ."
               />
               <button type="submit">make room</button>
             </form>
           </div>
         </div>
       </div>
-      <main></main>
+    </div>
+    <div class="preloader">
+      <div class="body">
+        <span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+        <div class="base">
+          <span></span>
+          <div class="face"></div>
+        </div>
+      </div>
+      <div class="longfazers">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <h1>Loading ...</h1>
     </div>
   </body>
+  <script>
+    $(window).on("load", function () {
+      $(".preloader").fadeOut("slow");
+      $(".main-page").css("display", "flex");
+    });
+  </script>
 </html>
